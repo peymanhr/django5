@@ -1,7 +1,8 @@
-FROM python:3.14.0-slim AS builder
+FROM python:3.14.3-slim AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    pkg-config \
     libmariadb-dev-compat \
     libmariadb-dev \
     libpq-dev \
@@ -15,7 +16,7 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
-FROM python:3.14.0-slim
+FROM python:3.14.3-slim
 
 WORKDIR /app
 COPY requirements.txt /app
@@ -37,9 +38,9 @@ ENV PYTHONUNBUFFERED=1 \
 RUN django-admin startproject app /app
 
 LABEL org.opencontainers.image.authors="phooshmand@gmail.com"
-LABEL org.opencontainers.image.title="Generic Django 5 image"
-LABEL org.opencontainers.image.url="https://github.com/peymanhr/django5"
-LABEL org.opencontainers.image.source="https://github.com/peymanhr/django5"
+LABEL org.opencontainers.image.title="Generic Django 6 image: slim"
+LABEL org.opencontainers.image.url="https://github.com/peymanhr/django6"
+LABEL org.opencontainers.image.source="https://github.com/peymanhr/django6"
 LABEL version="1.0"
 
 EXPOSE 80

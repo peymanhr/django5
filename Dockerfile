@@ -1,4 +1,4 @@
-FROM python:3.14.0 AS builder
+FROM python:3.14.3 AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -15,7 +15,7 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
 
-FROM python:3.14.0
+FROM python:3.14.3
 
 WORKDIR /app
 
@@ -38,9 +38,9 @@ ENV PYTHONUNBUFFERED=1 \
 RUN django-admin startproject app /app
 
 LABEL org.opencontainers.image.authors="phooshmand@gmail.com"
-LABEL org.opencontainers.image.title="Generic Django 5 image"
-LABEL org.opencontainers.image.url="https://github.com/peymanhr/django5"
-LABEL org.opencontainers.image.source="https://github.com/peymanhr/django5"
+LABEL org.opencontainers.image.title="Generic Django 6 image"
+LABEL org.opencontainers.image.url="https://github.com/peymanhr/django6"
+LABEL org.opencontainers.image.source="https://github.com/peymanhr/django6"
 LABEL version="1.0"
 
 EXPOSE 80
